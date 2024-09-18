@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { fetchProjets } from '../services/projetService';
+import Nav from '../components/Nav.vue';
+import ProjetItem from '../components/ProjetItem.vue';
 
 const projets = ref([]);
 
@@ -13,12 +15,18 @@ projets.value = await fetchProjets();
 <template>
 <div>
 	<h2>Liste des Projets</h2>
+	<Nav></Nav>
 
 	<a href="/add-projet">Créer un nouveau projet</a>
 
 	<ul v-if="projets.length > 0">
 		<li v-for="(projet, index) in projets" :key="index">
-			{{ projet.nom }} | {{ projet._id }} {{ projet.description }} {{ projet.dateCreation }} <a :href="`/projet/${projet._id}`" class="btn btn-primary mb-3">Voir le projet</a>
+			<ProjetItem
+                :nom="projet.nom"
+                :_id="projet._id"
+                :description="projet.description"
+                :dateCreation="projet.dateCreation"
+            />		
 		</li>
 	</ul>
 </div>
