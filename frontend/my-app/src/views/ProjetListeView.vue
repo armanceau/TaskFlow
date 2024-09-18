@@ -18,7 +18,7 @@ projets.value = await fetchProjets();
 
 	<ul v-if="projets.length > 0">
 		<li v-for="(projet, index) in projets" :key="index">
-			{{ projet.nom }} | {{ projet._id }} {{ projet.description }} {{ projet.dateCreation }} <a :href="`/projet/${projet._id}`">Voir le projet</a>
+			{{ projet.nom }} | {{ projet._id }} {{ projet.description }} {{ projet.dateCreation }} <a :href="`/projet/${projet._id}`" class="btn btn-primary mb-3">Voir le projet</a>
 		</li>
 	</ul>
 </div>
