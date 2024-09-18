@@ -55,5 +55,22 @@ export async function addProjet(nom, description, _id) {
 	} catch (error) {
 	  erreur.value = 'Erreur lors de l’ajout de la tâche : ' + error.message;
 	}
-  };
-  
+};
+
+export async function deleteProjet(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/delete-projet/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error('Erreur lors de la suppression du projet');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Erreur:', error);
+        return null;
+    }
+}  
