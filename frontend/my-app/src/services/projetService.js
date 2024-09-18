@@ -25,4 +25,35 @@ export async function fetchProjet(id) {
       return null;  
     }
 }
+
+
+export async function addProjet(nom, description, _id) {
+	try {
+	  const response = await fetch('http://localhost:3000/add-projet', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+		  nom: nom.value,
+		  description: description.value,
+		  _id: Number(_id.value),
+		}),
+	  });
+  
+	  if (!response.ok) {
+		throw new Error('Erreur réseau');
+	  }
+  
+	  const result = await response.json();
+	  console.log(result.message); 
+  
+	  nom.value = '';
+	  description.value = '';
+	  _id.value = '';
+	  //Faire message de confirmation de validation
+	} catch (error) {
+	  erreur.value = 'Erreur lors de l’ajout de la tâche : ' + error.message;
+	}
+  };
   
