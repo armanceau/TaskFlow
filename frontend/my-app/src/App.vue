@@ -1,9 +1,11 @@
 <script setup>
 import ProjetList from './components/ProjetList.vue';
+import Projet from './components/Projet.vue';
 </script>
 
 <template>
   <ProjetList></ProjetList>
+  <Projet></Projet>
 </template>
 
 <style scoped>

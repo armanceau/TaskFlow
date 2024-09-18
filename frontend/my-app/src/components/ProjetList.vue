@@ -1,11 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { fetchProjects } from '../services/projetService';
+import { fetchProjets } from '../services/projetService';
 
 const projets = ref([]);
 
 onMounted(async () => {
-  projets.value = await fetchProjects();
+  projets.value = await fetchProjets();
 });
 
 </script>

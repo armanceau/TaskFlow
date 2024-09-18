@@ -1,6 +1,6 @@
 import express  from 'express'
 import cors from 'cors'
-import { getProjets, addProjet, deleteProjet } from './db_utilsProjet.mjs';
+import { getProjets, addProjet, deleteProjet, getProjet } from './db_utilsProjet.mjs';
 
 const app = express()
 const port = 3000
@@ -13,9 +13,7 @@ var countProjet = 0;
 
 app.get('/', async (req, res) => {
     try {
-        // Attendre la résolution de la promesse retournée par getProjets
         const projets = await getProjets(); 
-        // Envoyer la réponse une fois que la promesse est résolue
         return res.json(projets);         
     } catch (error) {
         console.error('Erreur lors de la récupération des projets:', error);
@@ -23,6 +21,15 @@ app.get('/', async (req, res) => {
     }
 });
 
+app.get('/projet/:id', async (req, res) => {
+    try {
+        const projets = await getProjet(req.params.id); 
+        return res.json(projets);         
+    } catch (error) {
+        console.error('Erreur lors de la récupération du projet:', error);
+        res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des projets.' });
+    }
+});
 
 app.post('/add-projet', async (req, res) => {
     const { _id, nom, description } = req.body;
@@ -50,7 +57,7 @@ app.post('/add-projet', async (req, res) => {
 
 app.delete('/delete-projet/:id', async (req, res) => {
     try {
-        await deleteProjet( req.params.id);
+        await deleteProjet(req.params.id);
         res.json({ "message": "Projet supprimé." });
     } catch (error) {
         res.status(500).json({ "error": "Erreur lors de la suppression du projet." });

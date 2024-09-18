@@ -19,7 +19,18 @@ export async function getProjets() {
       throw error;
     }
 }
-  
+
+export async function getProjet(id) {
+  const { collection } = getCollection(getClient(), "projets")
+  console.log(id)
+  try {
+    return await collection.findOne({ _id: Number(id) });
+  } catch (error) {
+    console.error('Erreur lors de la récupération du projet n° : '+id, error);
+    throw error;
+  }
+}
+
 export async function deleteProjet(id) {
   console.log("id de la task : " + id)
   const { collection } = getCollection(getClient(), "projets")
