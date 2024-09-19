@@ -16,8 +16,6 @@ onMounted(async () => {
 if (projectId) {
     project.value = await fetchProjet(projectId);
     taches.value = await fetchTachesProjet(projectId);
-
-    console.log('taches.value : '+ taches.value)
 }
 });
 
@@ -50,9 +48,11 @@ const handleDelete = async () => {
             <input v-model="confirmationName" type="text" id="confirm-name" />
         </div>
         <button @click="handleDelete" :disabled="isDeleting">Supprimer le projet</button>
+
+        <a :href="`/projet/${projectId}/add-tache`" class="btn btn-primary mb-3">Créer une nouvelle tâche</a>
         
         <TacheList/>
-        
+
         <div v-if="project">
             <p><strong>ID:</strong> {{ project._id }}</p>
             <p><strong>Nom:</strong> {{ project.nom }}</p>

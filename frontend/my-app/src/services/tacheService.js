@@ -27,3 +27,37 @@ export async function fetchTachesProjet(idProjet) {
       return null;  
     }
 }
+
+export async function addTache(_id, _idProjet, nom, description, createur, utilisateurAssigne) {
+	try {
+    const response = await fetch(`http://localhost:3000/projet/${_idProjet}/add-tache`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            _id: Number(_id.value),
+            _idProjet: Number(_idProjet.value),
+            nom: nom.value,
+            description: description.value,
+            createur: createur.value,
+            utilisateurAssigne: utilisateurAssigne.value
+        }),
+    });
+  
+    if (!response.ok) {
+            throw new Error('Erreur réseau');
+    }
+
+    const result = await response.json();
+    console.log(result.message); 
+
+    nom.value = '';
+    description.value = '';
+    _id.value = '';
+    createur.value = '';
+    utilisateurAssigne.value = '';
+    } catch (error) {
+    erreur.value = 'Erreur lors de l’ajout de la tâche : ' + error.message;
+    }
+};
