@@ -22,7 +22,6 @@ export async function getProjets() {
 
 export async function getProjet(id) {
   const { collection } = getCollection(getClient(), "projets")
-  console.log(id)
   try {
     return await collection.findOne({ _id: Number(id) });
   } catch (error) {
@@ -32,7 +31,6 @@ export async function getProjet(id) {
 }
 
 export async function deleteProjet(id) {
-  console.log("id de la task : " + id)
   const { collection } = getCollection(getClient(), "projets")
   try {
     return await collection.deleteOne({ _id: Number(id) });
