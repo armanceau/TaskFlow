@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "backend": "file:",
     "cors": "^2.8.5",
     "express": "^4.21.0",
-    "mongodb": "^6.9.0"
+    "mongodb": "^6.9.0",
+    "vitest": "^2.1.1"
   }
 }
