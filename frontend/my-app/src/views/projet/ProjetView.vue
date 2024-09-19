@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import { fetchProjet, deleteProjet } from '../../services/projetService';
 import { fetchTachesProjet } from '../../services/tacheService';
 import TacheList from '../../components/tache/TacheList.vue';
+import Nav from '../../components/Nav.vue';
 
 const route = useRoute();
 const project = ref(null);
@@ -41,23 +42,33 @@ const handleDelete = async () => {
 
 <template>
     <div>
-        <h2>Détails du Projet</h2>
 
-        <div>
-            <label for="confirm-name">Confirmer le nom du projet pour suppression :</label>
-            <input v-model="confirmationName" type="text" id="confirm-name" />
+    </div>
+
+
+    <div class="d-flex h-100">
+        <div class="w-20 h-100 p-5 br-1">
+            <Nav></Nav>
         </div>
-        <button @click="handleDelete" :disabled="isDeleting">Supprimer le projet</button>
+        <div class="w-80">
+            <h2>Détails du Projet</h2>
 
-        <a :href="`/projet/${projectId}/add-tache`" class="btn btn-primary mb-3">Créer une nouvelle tâche</a>
-        
-        <TacheList/>
+            <div>
+                <label for="confirm-name">Confirmer le nom du projet pour suppression :</label>
+                <input v-model="confirmationName" type="text" id="confirm-name" />
+            </div>
+            <button @click="handleDelete" :disabled="isDeleting">Supprimer le projet</button>
 
-        <div v-if="project">
-            <p><strong>ID:</strong> {{ project._id }}</p>
-            <p><strong>Nom:</strong> {{ project.nom }}</p>
-            <p><strong>Description:</strong> {{ project.description }}</p>
+            <a :href="`/projet/${projectId}/add-tache`" class="btn btn-primary mb-3">Créer une nouvelle tâche</a>
+
+            <TacheList/>
+
+            <div v-if="project">
+                <p><strong>ID:</strong> {{ project._id }}</p>
+                <p><strong>Nom:</strong> {{ project.nom }}</p>
+                <p><strong>Description:</strong> {{ project.description }}</p>
+            </div>
+            <p v-else>Chargement...</p>
         </div>
-        <p v-else>Chargement...</p>
     </div>
 </template>
