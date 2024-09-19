@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { fetchProjets } from '../services/projetService';
+import { fetchProjets } from '../../services/projetService';
 
 const projets = ref([]);
 

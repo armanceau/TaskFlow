@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { fetchProjet, deleteProjet } from '../services/projetService';
+import { fetchProjet, deleteProjet } from '../../services/projetService';
 
 const route = useRoute();
 const project = ref(null);

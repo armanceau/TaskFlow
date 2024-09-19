@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { addProjet } from '../services/projetService';
+import { addProjet } from '../../services/projetService';
 
 const nom = ref('');
 const description = ref('');
