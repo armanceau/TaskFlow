@@ -41,11 +41,6 @@ const handleDelete = async () => {
 </script>
 
 <template>
-    <div>
-
-    </div>
-
-
     <div class="d-flex h-100">
         <div class="w-20 h-100 p-5 br-1">
             <Nav></Nav>

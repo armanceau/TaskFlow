@@ -4,6 +4,7 @@ import ProjetListeView from '../views/projet/ProjetListeView.vue';
 import DefaultView from '../views/DefaultView.vue';
 import AjoutProjetView from '../views/projet/AjoutProjetView.vue';
 import AjoutTacheView from '../views/tache/AjoutTacheView.vue';
+import ParametreView from '../views/ParametreView.vue';
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: '/projet/:id/add-tache',
         name: 'AjoutTacheView',
         component: AjoutTacheView
+    },
+    {
+        path: '/parametre',
+        name: 'ParametreView',
+        component: ParametreView
     }
 ];
 
