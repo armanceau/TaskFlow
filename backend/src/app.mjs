@@ -90,8 +90,6 @@ app.get('/projet/:projetId/taches', async (req, res) => {
 
 app.post('/projet/:projetId/add-tache', async (req, res) => {
     const _idProjet = req.params.projetId;
-
-    console.log(_idProjet)
     
     const date = new Date();
     let day = date.getDate();
@@ -102,11 +100,6 @@ app.post('/projet/:projetId/add-tache', async (req, res) => {
     
     const { _id, nom, createur, utilisateurAssigne } = req.body;
 
-    console.log(req.body)
-
-
-    console.log('nom:' + nom)
-    console.log('id : ' + _id)
     if (nom != null && _id != null) {
         try {
             await addTache({ _id, _idProjet: Number(_idProjet), nom, dateCreation, createur, utilisateurAssigne });
@@ -121,8 +114,8 @@ app.post('/projet/:projetId/add-tache', async (req, res) => {
 
 app.delete('/projet/:projetId/delete-tache/:tacheId', async (req, res) => {
     try {
-        const projetId = req.params.projetId;  // Récupérer l'ID du projet
-        const tacheId = req.params.tacheId;    // Récupérer l'ID de la tâche
+        const projetId = req.params.projetId;
+        const tacheId = req.params.tacheId;
         
         await deleteTache(tacheId, projetId); 
         res.json({ "message": "Tache supprimée." });
