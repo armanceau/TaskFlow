@@ -12,6 +12,10 @@ onMounted(async () => {
   taches.value = await fetchTachesProjet(projectId);
 });
 
+const fetchTaches = async () => {
+  taches.value = await fetchTachesProjet(projectId);
+};
+
 </script>
 
 <template>
@@ -24,6 +28,8 @@ onMounted(async () => {
                 :dateCreation="tache.dateCreation"
                 :createur="tache.createur"
                 :utilisateurAssigne="tache.utilisateurAssigne"
+                :projectId="projectId"
+                @task-deleted="fetchTaches"
             />		
 		</li>
 	</ul>
