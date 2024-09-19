@@ -37,6 +37,9 @@ h1{
     border-radius: 1em;
 }
 
+.bg-danger-light{
+    background-color: rgba(255, 0, 0, 0.5);
+}
 
 
 
