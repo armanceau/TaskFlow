@@ -29,5 +29,9 @@ projets.value = await fetchProjets();
             />		
 		</li>
 	</ul>
+	<div v-else>
+		<p>Oups ! Aucun projet disponible</p>
+		<a href="/add-projet">Créer un nouveau projet</a>
+	</div>
 </div>
 </template>
