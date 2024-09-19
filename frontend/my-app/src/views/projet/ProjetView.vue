@@ -50,12 +50,15 @@ const handleDelete = async () => {
             <div class="d-flex w-100 flex-start align-items-start justify-content-between mt-4">
                 <h2>{{ project.nom }}</h2>
                 <div class="d-flex border border-danger flex-column br-1 p-3 gap-1">
-                    <div class="d-flex gap-1">
+                    <div class="d-flex flex-column gap-1">
                         <label for="confirm-name" class="text-danger">Confirmer le nom du projet pour suppression :</label>
                         <input v-model="confirmationName" type="text" id="confirm-name" class="border border-danger rounded p-1"/>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button @click="handleDelete" :disabled="isDeleting" class="btn btn-outline-danger">Supprimer le projet</button>
+                        <button @click="handleDelete" :disabled="isDeleting" class="btn btn-outline-danger">
+                            Supprimer le projet
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </div>
                 </div>
             </div>
