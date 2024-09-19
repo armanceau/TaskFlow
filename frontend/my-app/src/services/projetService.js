@@ -26,7 +26,6 @@ export async function fetchProjet(id) {
     }
 }
 
-
 export async function addProjet(nom, description, _id) {
 	try {
 	  const response = await fetch('http://localhost:3000/add-projet', {

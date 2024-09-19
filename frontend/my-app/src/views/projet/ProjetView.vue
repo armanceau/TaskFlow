@@ -2,9 +2,12 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { fetchProjet, deleteProjet } from '../../services/projetService';
+import { fetchTachesProjet } from '../../services/tacheService';
+import TacheList from '../../components/tache/TacheList.vue';
 
 const route = useRoute();
 const project = ref(null);
+const taches = ref([])
 const projectId = route.params.id;
 const confirmationName = ref(''); 
 const isDeleting = ref(false);
@@ -12,6 +15,9 @@ const isDeleting = ref(false);
 onMounted(async () => {
 if (projectId) {
     project.value = await fetchProjet(projectId);
+    taches.value = await fetchTachesProjet(projectId);
+
+    console.log('taches.value : '+ taches.value)
 }
 });
 
@@ -45,7 +51,8 @@ const handleDelete = async () => {
         </div>
         <button @click="handleDelete" :disabled="isDeleting">Supprimer le projet</button>
         
-
+        <TacheList/>
+        
         <div v-if="project">
             <p><strong>ID:</strong> {{ project._id }}</p>
             <p><strong>Nom:</strong> {{ project.nom }}</p>
