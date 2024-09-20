@@ -40,8 +40,8 @@ export default {
                 </div>
             </div>
             <div class="d-flex align-item-center gap-2">
-                <div v-if="utilisateurAssigne" class="bg-secondary-custom-05 p-1 rounded shadow-sm">
-                    <i class="bi bi-person"></i> {{ utilisateurAssigne }}
+                <div v-if="utilisateurAssigne" class="border p-1 rounded">
+                    <i class="bi bi-person"></i> A qui :  {{ utilisateurAssigne }}
                 </div>
                 <div class="bg-secondary-custom-05 p-1 rounded shadow-sm">
                     <i class="bi bi-calendar"></i> {{ dateCreation }}
@@ -51,7 +51,9 @@ export default {
         </div>
         <div class="d-flex align-items-center justify-content-between">
             <div>
-                {{ description }}
+                <i class="text-muted">
+                    {{ description }}
+                </i>
             </div>
             <div>
                 <button @click="handleDelete" class="btn btn-outline-danger btn-sm">

@@ -21,7 +21,9 @@ export default {
         </div>
         <div class="d-flex align-items-center justify-content-between">
             <div>
-                {{ description }}
+                <i class="text-muted">
+                    {{ description }}
+                </i>
             </div>
             <div>
                 <a :href="`/projet/${_id}`" class="btn btn-sm btn-outline-dark d-flex align-items-center gap-2">
