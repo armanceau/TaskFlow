@@ -21,7 +21,7 @@
                 </button>
             </form>
             <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
-            <a href="/register" class="mt-3">J'ai déjà un compte</a>
+            <a href="/login" class="mt-3">J'ai déjà un compte</a>
         </div>
     </div>
 </template>
