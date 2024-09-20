@@ -58,13 +58,11 @@ export async function addTache(_id, _idProjet, nom, description, createur, utili
     createur.value = '';
     utilisateurAssigne.value = '';
     } catch (error) {
-    erreur.value = 'Erreur lors de l’ajout de la tâche : ' + error.message;
+      console.error('Erreur lors de l’ajout de la tâche : ' + error.message);
     }
 };
 
 export async function deleteTache(id, idProjet) {
-    console.log('id:' + id)
-    console.log('idprojet: ' + idProjet)
     try {
         const response = await fetch(`http://localhost:3000/projet/${idProjet}/delete-tache/${id}`, {
             method: 'DELETE',
@@ -77,7 +75,7 @@ export async function deleteTache(id, idProjet) {
         }
         return await response.json();
     } catch (error) {
-        console.error('Erreur:', error);
+        console.error('Erreur:', error.message);
         return null;
     }
 };  
