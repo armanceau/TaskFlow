@@ -5,6 +5,13 @@ import DefaultView from '../views/DefaultView.vue';
 import AjoutProjetView from '../views/projet/AjoutProjetView.vue';
 import AjoutTacheView from '../views/tache/AjoutTacheView.vue';
 import ParametreView from '../views/ParametreView.vue';
+import Login from '../views/authentification/Login.vue';
+import Logout from '../views/authentification/Logout.vue';
+import Register from '../views/authentification/Register.vue';
+
+function isAuthenticated() {
+    return !!localStorage.getItem('authToken'); // Retourne true si le token existe
+}
 
 const routes = [
     {
@@ -13,29 +20,86 @@ const routes = [
         component: DefaultView
     },
     {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register,
+    },
+    {
         path: '/projet/:id',
         name: 'ProjetView',
-        component: ProjetView
+        component: ProjetView,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
     },
     {
         path: '/projets',
         name: 'ProjetListeView',
-        component: ProjetListeView
+        component: ProjetListeView,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
     },
     {
         path: '/add-projet',
         name: 'AjoutProjetView',
-        component: AjoutProjetView
+        component: AjoutProjetView,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
     },
     {
         path: '/projet/:id/add-tache',
         name: 'AjoutTacheView',
-        component: AjoutTacheView
+        component: AjoutTacheView,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
     },
     {
         path: '/parametre',
         name: 'ParametreView',
-        component: ParametreView
+        component: ParametreView,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
+    },
+    {
+        path: '/logout',
+        name: 'Logout',
+        component: Logout,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
     }
 ];
 
