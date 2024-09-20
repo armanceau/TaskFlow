@@ -1,66 +1,56 @@
-<script>
-import { ref } from 'vue';
+<script setup>
+import Nav from '../../components/Nav.vue';
+import { ref, onMounted } from 'vue';
+import { fetchProfil } from '../../services/utilisateurService';
+import { useRouter } from 'vue-router';
 
-export default {
-  data() {
-    return {
-      username: '', 
-      user: {},
-      loading: true,
-      error: null,
-    };
-  },
-  mounted() {
-    this.fetchProfil();
-  },
-  methods: {
-    async fetchProfil() {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        this.$router.push({ name: 'Login' });
-        return;
-      }
+const username = ref('');
+const loading = ref(true);
+const error = ref(null);
 
-      try {
-        console.log('je rentre dans le try');
-        const response = await fetch('http://localhost:3000/profil', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
+onMounted(async () => {
+    const { username: fetchedUsername, loading: fetchedLoading, error: fetchedError } = await fetchProfil();
+    username.value = fetchedUsername;
+    loading.value = fetchedLoading;
+    error.value = fetchedError;
 
-        if (response.status === 401) {
-          this.$router.push({ name: 'Login' });
-        } else if (!response.ok) {
-          throw new Error('Erreur lors de la récupération du profil');
-        }
-        const data = await response.json();
-        this.username = data.username; 
+    if (fetchedError) {
+        const router = useRouter();
+        router.push({ name: 'Login' });
+    }
+});
 
-      } catch (error) {
-        this.error = error.message;
-      } finally {
-        this.loading = false;
-      }
-    },
-  },
-};
-</script>
+</script>   
 
 <template>
-  <div class="profil">
-    <h1>Profil de l'utilisateur</h1>
-    <div v-if="loading">Chargement...</div>
-    <div v-else-if="error">{{ error }}</div>
-    <div v-else>
-      <p><strong>Nom d'utilisateur :</strong> {{ username }}</p>
-    </div>
+    <div class="d-flex h-100">
+        <div class="w-20 h-100 p-5 br-1">
+            <Nav></Nav>
+        </div>
+        <div class="w-80 h-100 py-5 pr-4">
+            <div class="d-flex flex-column align-items-start w-100 h-100 border shadow-sm gap-2 br-1 w-100 px-4">
+                <div class="d-flex w-100 flex-start align-items-center justify-content-between mt-4">
+                    <h2>Profil utilisateur</h2>
+                </div>
+
+                <div class="text-muted my-1">Informations personnelles</div>
+                <div v-if="loading">Chargement...</div>
+                <div v-else-if="error">{{ error }}</div>
+                <div v-else class="d-flex flex-column gap-3">
+                    <div class="border p-2 rounded">
+                        <i class="bi bi-person"></i> Nom d'utilisateur : {{ username }}
+                    </div>
+                    <div class="border p-2 rounded">
+                        <i class="bi bi-envelope-at"></i> Adresse e-mail : {{ username }}
+                    </div>
+                    <div class="border p-2 rounded">
+                        <i class="bi bi-person-vcard"></i> Nom : {{ username }}
+                    </div>
+                    <div class="border p-2 rounded">
+                        <i class="bi bi-person-vcard"></i> Prénom : {{ username }}
+                    </div>
+                </div>
+            </div>
+        </div>
   </div>
 </template>
-
-<style scoped>
-.profil {
-  padding: 20px;
-}
-</style>
