@@ -31,7 +31,7 @@ jobs:
 
     - name: Lancer le backend
       run: node app.mjs
-      working-directory: backend
+      working-directory: backend/src
 
     - name: Exécuter les tests 
       run: npm run test
