@@ -31,7 +31,7 @@ projets.value = await fetchProjets();
 				Projets actifs
 			</div>
 
-			<div v-if="projets.length > 0" v-for="(projet, index) in projets" :key="index" class="w-100">
+			<div v-if="projets.length > 0" v-for="(projet, index) in projets" :key="index" class="w-100 overflow-auto">
 				<ProjetItem
 					:nom="projet.nom"
 					:_id="projet._id"
