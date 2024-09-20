@@ -1,0 +1,9 @@
+# Ignorer les modules Node.js
+/backend/node_modules/
+/frontend/node_modules/
+
+# Ignorer les fichiers de build de Vue.js (si tu buildes localement)
+frontend/dist/
+
+# Ignorer les fichiers de logs
+*.log
