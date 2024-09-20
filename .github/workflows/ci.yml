@@ -29,6 +29,10 @@ jobs:
       run: chmod +x node_modules/.bin/vitest
       working-directory: backend
 
-    - name: Exécuter les tests (test)
+    name: Lancer le backend
+      run: node app/mjs
+      working-directory: backend
+
+    - name: Exécuter les tests 
       run: npm run test
       working-directory: backend
