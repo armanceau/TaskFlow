@@ -20,11 +20,13 @@
 <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  import { useUtilisateurStore } from '../../stores/utilisateurStore';
   
   const username = ref('');
   const password = ref('');
   const errorMessage = ref('');
   const router = useRouter();
+  const userStore = useUtilisateurStore();
   
   const login = async () => {
     try {
@@ -43,6 +45,9 @@
   
       const data = await response.json();
       localStorage.setItem('authToken', data.token);
+
+      userStore.setUser(username.value); 
+      userStore.setToken(data.token);
   
       router.push('/');
     } catch (error) {
