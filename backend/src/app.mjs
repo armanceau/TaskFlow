@@ -2,7 +2,11 @@ import express  from 'express'
 import cors from 'cors'
 import { getProjets, addProjet, deleteProjet, getProjet } from './db_utilsProjet.mjs';
 import { getTaches, addTache, deleteTache, getTachesProjet } from './db_utilsTache.mjs';
+import { getUtilisateur, addUtlilisateur } from './db_utilsUtilisateur.mjs';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
+const JWT_SECRET = 'secret';
 const app = express()
 const port = 3000
 
@@ -123,6 +127,58 @@ app.delete('/projet/:projetId/delete-tache/:tacheId', async (req, res) => {
         res.status(500).json({ "error": "Erreur lors de la suppression du projet." });
     }
 })
+
+
+//Utilisateurs : 
+
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+  
+    if (!username || !password) {
+    return res.status(400).json({ error: 'Nom d\'utilisateur et mot de passe requis' });
+    }
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await addUtlilisateur({ username, password: hashedPassword });
+
+        res.status(201).json({ message: 'Utilisateur créé avec succès' });
+    } catch (error) {
+        console.error('Erreur lors de l\'enregistrement de l\'utilisateur :', error);
+        res.status(500).json({ error: 'Erreur serveur lors de l\'enregistrement de l\'utilisateur' });
+    }
+  });
+  
+  
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+  
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Nom d utilisateur ou mot de passe manquant' });
+    }
+  
+    try {
+        const user = await getUtilisateur(username);
+    
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur non trouvé' });
+        }
+    
+        const match = await bcrypt.compare(password, user.password);
+  
+        if (!match) {
+            return res.status(401).json({ error: 'Mot de passe incorrect' });
+        }
+  
+        const token = jwt.sign({ id: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
+        console.log(token)
+    
+        return res.json({ token });
+    } catch (error) {
+        console.error('Erreur lors de la connexion:', error);
+        return res.status(500).json({ error: 'Erreur serveur' });
+    }
+});
 
 
 // PAS DE GOODBYE : donc 404 ! \O/
