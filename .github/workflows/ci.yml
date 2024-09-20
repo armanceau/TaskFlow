@@ -29,7 +29,7 @@ jobs:
       run: chmod +x node_modules/.bin/vitest
       working-directory: backend
 
-    name: Lancer le backend
+    - name: Lancer le backend
       run: node app/mjs
       working-directory: backend
 
