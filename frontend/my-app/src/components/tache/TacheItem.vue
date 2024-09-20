@@ -28,7 +28,37 @@ export default {
 };
 </script>
 
-<template>
+<!-- <template>
     {{ nom }} | {{ _id }} {{ description }} {{ dateCreation }} {{ createur }} {{ utilisateurAssigne }}
     <button @click="handleDelete">Supprimer la tache</button>
+</template> -->
+
+<template>
+    <div class="w-100 d-flex flex-column border p-3 br-1 gap-2">
+        <div class="d-flex justify-content-between rounded text-dark">
+            <div>
+                {{ nom }}
+            </div>
+            <div class="d-flex align-item-center gap-2">
+                <div v-if="utilisateurAssigne" class="bg-secondary-custom-05 p-1 rounded shadow-sm">
+                    <i class="bi bi-person"></i> {{ utilisateurAssigne }}
+                </div>
+                <div class="bg-secondary-custom-05 p-1 rounded shadow-sm">
+                    <i class="bi bi-calendar"></i> {{ dateCreation }}
+                </div>
+            </div>
+            
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+            <div>
+                {{ description }}
+            </div>
+            <div>
+                <button @click="handleDelete" class="btn btn-outline-danger btn-sm">
+                    Supprimer
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </template>

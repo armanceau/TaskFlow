@@ -9,19 +9,19 @@ const projectId = route.params.id;
 const taches = ref([])
 
 onMounted(async () => {
-  taches.value = await fetchTachesProjet(projectId);
+    taches.value = await fetchTachesProjet(projectId);
 });
 
 const fetchTaches = async () => {
-  taches.value = await fetchTachesProjet(projectId);
+    taches.value = await fetchTachesProjet(projectId);
 };
 
 </script>
 
 <template>
-  <ul v-if="taches.length > 0">
-		<li v-for="(tache, index) in taches" :key="index">
-			<TacheItem
+    <div class="overflow-auto w-100 d-flex flex-column gap-2">
+        <div v-if="taches.length > 0" v-for="(tache, index) in taches" :key="index" class="w-100">
+            <TacheItem
                 :nom="tache.nom"
                 :_id="tache._id"
                 :description="tache.description"
@@ -31,6 +31,6 @@ const fetchTaches = async () => {
                 :projectId="projectId"
                 @task-deleted="fetchTaches"
             />		
-		</li>
-	</ul>
+        </div>
+    </div>
 </template>

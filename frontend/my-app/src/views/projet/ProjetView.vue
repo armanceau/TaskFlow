@@ -48,7 +48,10 @@ const handleDelete = async () => {
 	<div class="w-80 h-100 py-5 pr-4">
         <div v-if="project" class="d-flex flex-column align-items-start w-100 h-100 border shadow-sm gap-2 br-1 w-100 px-4">
             <div class="d-flex w-100 flex-start align-items-start justify-content-between mt-4">
-                <h2>{{ project.nom }}</h2>
+                <div>
+                    <h2>{{ project.nom }}</h2>
+                    <i>{{ project.description }}</i>
+                </div>
                 <div class="d-flex border border-danger flex-column br-1 p-3 gap-1">
                     <div class="fz-075 text-danger">
                         *Danger zone
@@ -65,13 +68,12 @@ const handleDelete = async () => {
                     </div>
                 </div>
             </div>
-            <a :href="`/projet/${projectId}/add-tache`" class="btn btn-primary mb-3">Créer une nouvelle tâche</a>
+            <a :href="`/projet/${projectId}/add-tache`" class="btn btn-sm btn-outline-dark d-flex align-items-center gap-2">
+                Créer une nouvelle tâche
+                <i class="bi bi-plus-circle"></i>
+            </a>
 
             <TacheList/>
-
-            <p><strong>ID:</strong> {{ project._id }}</p>
-            <p><strong>Nom:</strong> {{ project.nom }}</p>
-            <p><strong>Description:</strong> {{ project.description }}</p>
         </div>
         <p v-else>Chargement...</p>
 	</div>
