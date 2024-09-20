@@ -15,7 +15,7 @@ export default {
             <div>
                 {{ nom }}
             </div>
-            <div class="bg-secondary-custom-05 p-1 rounded shadow-sm">
+            <div class="border p-1 rounded">
                 <i class="bi bi-calendar"></i> {{ dateCreation }}
             </div>
         </div>

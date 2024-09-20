@@ -15,11 +15,11 @@
                 <i class="bi bi-folder"></i> Projets
             </a>
         </div>
-        <div :class="['nav-card w-90 d-flex justify-content-start br-1', { 'bg-dark text-white': isActive('/#') }, { 'text-dark border': !isActive('/#') }]">
+        <!-- <div :class="['nav-card w-90 d-flex justify-content-start br-1', { 'bg-dark text-white': isActive('/#') }, { 'text-dark border': !isActive('/#') }]">
             <a href="/#" :class="['ml-1 p-2 w-100 text-decoration-none d-flex align-items-center justify-content-start gap-2 text-dark', { 'text-white': isActive('/#') }]">
                 Liste déroulante projet
             </a>
-        </div>
+        </div> -->
         <div class="ml-1 text-left w-90 text-muted fz-075 mt-3">Profil</div>
         <div :class="['nav-card w-90 d-flex justify-content-start br-1', { 'bg-dark text-white': isActive('/profil') }, { 'text-dark border': !isActive('/profil') }]">
             <a href="/profil" :class="['ml-1 p-2 w-100 text-decoration-none d-flex align-items-center justify-content-start gap-2 text-dark', { 'text-white': isActive('/profil') }]">
