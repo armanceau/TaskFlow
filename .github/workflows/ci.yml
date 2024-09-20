@@ -21,11 +21,8 @@ jobs:
       with:
         node-version: '16' # Ou la version que tu utilises
 
-    - name: Se déplacer dans le backend
-      run: cd /backend
-
-    - name: Installer les dépendances
-      run: npm install
-      
-    - name: Exécuter les tests
-      run: npm run test # Assure-toi que cette commande exécute tes tests
+    - name: Eéxcuter les tests du backend
+      run: |
+        cd backend
+        npm install
+        npm run test
