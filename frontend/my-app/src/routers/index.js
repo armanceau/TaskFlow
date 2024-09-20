@@ -8,6 +8,7 @@ import ParametreView from '../views/ParametreView.vue';
 import Login from '../views/authentification/Login.vue';
 import Logout from '../views/authentification/Logout.vue';
 import Register from '../views/authentification/Register.vue';
+import Profil from '../views/utilisateur/Profil.vue';
 
 function isAuthenticated() {
     return !!localStorage.getItem('authToken'); // Retourne true si le token existe
@@ -81,6 +82,18 @@ const routes = [
         path: '/parametre',
         name: 'ParametreView',
         component: ParametreView,
+        beforeEnter: (to, from, next) => {
+            if (!isAuthenticated()) {
+                next({ name: 'Login' }); 
+            } else {
+                next();
+            }
+        }
+    },
+    {
+        path: '/profil',
+        name: 'Profil',
+        component: Profil,
         beforeEnter: (to, from, next) => {
             if (!isAuthenticated()) {
                 next({ name: 'Login' }); 

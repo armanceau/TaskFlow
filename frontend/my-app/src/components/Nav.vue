@@ -31,6 +31,12 @@
                 <i class="bi bi-gear"></i> Paramètre
             </a>
         </div>
+        <div class="ml-1 text-left w-90 text-muted fz-075 mt-3">Autre</div>
+        <div :class="['nav-card w-90 d-flex justify-content-start br-1', { 'bg-dark text-white': isActive('/parametre') },{ 'text-dark border': !isActive('/logout') }]">
+            <a href="/logout" :class="['ml-1 p-2 w-100 text-decoration-none d-flex align-items-center justify-content-start gap-2 text-dark', { 'text-white': isActive('/logout') }]">
+                <i class="bi bi-box-arrow-right"></i> Déconnexion
+            </a>
+        </div>
     </div>
 </template>
 
