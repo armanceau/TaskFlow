@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Vérifier le code
+      uses: actions/checkout@v2
+
+    - name: Installer Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # Ou la version que tu utilises
+
+    - name: Se déplacer dans le backend
+      run: cd /backend
+
+    - name: Installer les dépendances
+      run: npm install
+      
+    - name: Exécuter les tests
+      run: npm run test # Assure-toi que cette commande exécute tes tests
