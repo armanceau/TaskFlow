@@ -21,7 +21,6 @@ jobs:
       with:
         node-version: '18'
         
-
     - name: Installer les dépendances
       run: npm install
       working-directory: backend
@@ -30,6 +29,6 @@ jobs:
       run: chmod +x node_modules/.bin/vitest
       working-directory: backend
 
-    - name: Exécuter les tests
+    - name: Exécuter les tests (test)
       run: npm run test
       working-directory: backend
