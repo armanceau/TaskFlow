@@ -28,11 +28,6 @@ export default {
 };
 </script>
 
-<!-- <template>
-    {{ nom }} | {{ _id }} {{ description }} {{ dateCreation }} {{ createur }} {{ utilisateurAssigne }}
-    <button @click="handleDelete">Supprimer la tache</button>
-</template> -->
-
 <template>
     <div class="w-100 d-flex flex-column border p-3 br-1 gap-2">
         <div class="d-flex justify-content-between rounded text-dark">
