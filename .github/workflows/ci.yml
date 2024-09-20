@@ -19,10 +19,17 @@ jobs:
     - name: Installer Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16' # Ou la version que tu utilises
+        node-version: '18'
+        
 
-    - name: Eéxcuter les tests du backend
-      run: |
-        cd backend
-        npm install
-        npm run test
+    - name: Installer les dépendances
+      run: npm install
+      working-directory: backend
+
+    - name: Donner les permissions d'exécution à vitest
+      run: chmod +x node_modules/.bin/vitest
+      working-directory: backend
+
+    - name: Exécuter les tests
+      run: npm run test
+      working-directory: backend
