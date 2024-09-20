@@ -116,11 +116,11 @@ app.post('/projet/:projetId/add-tache', async (req, res) => {
     
     let dateCreation = `${day}-${month}-${year}`;
     
-    const { _id, nom, createur, utilisateurAssigne } = req.body;
+    const { _id, nom, description, createur, utilisateurAssigne } = req.body;
 
     if (nom != null && _id != null) {
         try {
-            await addTache({ _id, _idProjet: Number(_idProjet), nom, dateCreation, createur, utilisateurAssigne });
+            await addTache({ _id, _idProjet: Number(_idProjet), nom, description, dateCreation, createur, utilisateurAssigne });
             res.json({ "message": "Tache ajoutée" });
         } catch (error) {
             res.status(500).json({ "error": "Erreur lors de l'ajout de la tâche." });
