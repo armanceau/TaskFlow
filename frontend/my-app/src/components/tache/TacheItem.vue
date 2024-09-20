@@ -31,8 +31,13 @@ export default {
 <template>
     <div class="w-100 d-flex flex-column border p-3 br-1 gap-2">
         <div class="d-flex justify-content-between rounded text-dark">
-            <div>
-                {{ nom }}
+            <div class="d-flex align-items-center gap-2">
+                <div>
+                    {{ nom }} 
+                </div>
+                <div class="border rounded p-1">
+                    <i class="bi bi-person"></i> {{ createur }}
+                </div>
             </div>
             <div class="d-flex align-item-center gap-2">
                 <div v-if="utilisateurAssigne" class="bg-secondary-custom-05 p-1 rounded shadow-sm">
