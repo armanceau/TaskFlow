@@ -30,3 +30,14 @@ export async function getUtilisateur(username) {
         throw error;
     }
 }
+
+export async function getProfil(username) {
+    const { collection } = getCollection(getClient(), "utilisateurs")
+    try {
+      return await collection.findOne({ username: username });
+    } catch (error) {
+      console.error('Erreur lors de la récupération de l utilisateur : '+id, error);
+      throw error;
+    }
+}
+  

@@ -4,7 +4,7 @@ import { ref } from 'vue';
 export default {
   data() {
     return {
-      username: '', // Déclare username ici
+      username: '', 
       user: {},
       loading: true,
       error: null,
@@ -16,7 +16,6 @@ export default {
   methods: {
     async fetchProfil() {
       const token = localStorage.getItem('authToken');
-      console.log('mon token: ' + token);
       if (!token) {
         this.$router.push({ name: 'Login' });
         return;
@@ -37,7 +36,7 @@ export default {
           throw new Error('Erreur lors de la récupération du profil');
         }
         const data = await response.json();
-        this.username = data.username; // Utilise this.username
+        this.username = data.username; 
 
       } catch (error) {
         this.error = error.message;
@@ -56,7 +55,6 @@ export default {
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
       <p><strong>Nom d'utilisateur :</strong> {{ username }}</p>
-      <!-- Ajoute d'autres champs si nécessaire -->
     </div>
   </div>
 </template>

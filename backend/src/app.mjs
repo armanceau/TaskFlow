@@ -2,7 +2,7 @@ import express  from 'express'
 import cors from 'cors'
 import { getProjets, addProjet, deleteProjet, getProjet } from './db_utilsProjet.mjs';
 import { getTaches, addTache, deleteTache, getTachesProjet } from './db_utilsTache.mjs';
-import { getUtilisateur, addUtlilisateur } from './db_utilsUtilisateur.mjs';
+import { getUtilisateur, addUtlilisateur, getProfil } from './db_utilsUtilisateur.mjs';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
@@ -12,6 +12,20 @@ const port = 3000
 
 app.use(cors());
 app.use(express.json()) 
+
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (token == null) return res.sendStatus(401); 
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403); 
+        req.user = user;
+        next();
+    });
+};
+  
 
 //Projets : 
 
@@ -178,6 +192,28 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ error: 'Erreur serveur' });
     }
 });
+
+app.get('/profil', authenticateToken, async (req, res) => {
+    const username = req.user.username;
+
+    try {
+        const user = await getProfil(username);
+        if (!user) {
+            return res.status(404).json({ error: "Utilisateur non trouvé" });
+        }
+
+        // Retourne uniquement les informations nécessaires, sans le mot de passe
+        res.json({
+            username: user.username,
+            email: user.email // Assure-toi d'avoir les informations nécessaires dans la base
+            // Ajoute d'autres champs si nécessaires
+        });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des informations de profil :', error);
+        res.status(500).json({ error: "Erreur lors de la récupération du profil" });
+    }
+});
+
 
 
 // PAS DE GOODBYE : donc 404 ! \O/

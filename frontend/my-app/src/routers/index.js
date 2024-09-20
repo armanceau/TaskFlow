@@ -11,7 +11,7 @@ import Register from '../views/authentification/Register.vue';
 import Profil from '../views/utilisateur/Profil.vue';
 
 function isAuthenticated() {
-    return !!localStorage.getItem('authToken'); // Retourne true si le token existe
+    return !!localStorage.getItem('authToken');
 }
 
 const routes = [
