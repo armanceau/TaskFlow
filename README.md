@@ -22,3 +22,5 @@ cd /frontend/my-app
 npx vitest
 
 Lancer test frontend cypress : 
+cd /frontend/my-app
+npm cypress open
