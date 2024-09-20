@@ -30,7 +30,9 @@ jobs:
       working-directory: backend
 
     - name: Lancer le backend
-      run: node app.mjs
+      run: |
+        nohup node app.mjs &  # Exécuter en arrière-plan
+        sleep 5  # Attendre quelques secondes pour s'assurer que le serveur est prêt
       working-directory: backend/src
 
     - name: Exécuter les tests 
