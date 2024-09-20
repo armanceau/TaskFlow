@@ -30,7 +30,7 @@ jobs:
       working-directory: backend
 
     - name: Lancer le backend
-      run: node app/mjs
+      run: node app.mjs
       working-directory: backend
 
     - name: Exécuter les tests 
