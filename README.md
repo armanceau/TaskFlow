@@ -77,6 +77,7 @@ cd /frontend/my-app
 npm cypress open
 ```
 
+
 ## API Reference
 
 #### Récupérer tous les projets
@@ -94,7 +95,7 @@ npm cypress open
 #### Ajouter un projet
 
 ```http
-  GET /localhost:3000/add-projet
+  POST /localhost:3000/add-projet
 ```
 
 | Données | Type     | Description                |
@@ -102,6 +103,17 @@ npm cypress open
 | `_id` | `integer` | **Required** |
 | `nom` | `string` | **Required** |
 | `description` | `string` |  |
+
+#### Supprimer un projet
+
+```http
+  DELETE /localhost:3000/delete-projet/:id
+```
+
+| Données | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `integer` | **Required** |
+
 
 #### Récupérer toutes les tâches
 
@@ -121,7 +133,7 @@ npm cypress open
 #### Ajouter une tâche à un projet
 
 ```http
-  GET /localhost:3000/projet/:projetId/add-tache
+  POST /localhost:3000/projet/:projetId/add-tache
 ```
 | Données | Type     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -131,6 +143,36 @@ npm cypress open
 | `description` | `string` |  |
 | `createur` | `string` |  |
 | `utilisateurAssigne` | `string` |  |
+
+#### Supprimer une tâche d'un projet
+
+```http
+  DELETE /localhost:3000/projet/:projetId/delete-tache/:tacheId
+```
+| Données | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `projetId` | `integer` | **Required** |
+| `tacheId` | `integer` | **Required** |
+
+#### Inscription
+
+```http
+  POST /localhost:3000/register
+```
+| Données | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required** |
+| `password` | `string` | **Required** |
+
+#### Connexion
+
+```http
+  POST /localhost:3000/login
+```
+| Données | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required** |
+| `password` | `string` | **Required** |
 
 ## Author
 
