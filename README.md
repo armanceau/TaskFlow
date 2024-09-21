@@ -174,6 +174,16 @@ npm cypress open
 | `username` | `string` | **Required** |
 | `password` | `string` | **Required** |
 
+#### Récupérer info de l'utilisateur connecté
+
+```http
+  GET /localhost:3000/profil
+```
+| Données | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required** |
+| `password` | `string` | **Required** |
+
 ## Author
 
 [@armanceau](https://www.github.com/armanceau)
