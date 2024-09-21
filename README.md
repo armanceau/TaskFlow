@@ -27,37 +27,59 @@ Projet d'école :  https://nowledgeable.com/student/courses/1653
 
 ## Getting Started
 
+Cloner le projet : 
 ```bash
-//Cloner le projet
 git clone https://github.com/armanceau/TaskFlow.git
 ```
 
+Se déplacer dans le projet : 
 ```bash
 cd TaskFlow
 ```
 
+Lancer le backend : 
 ```bash
-yarn start
+cd /backend
+npm install
+cd /src 
+node app.mjs
 ```
 
-## Documentation
+Lancer les tests du backend : 
+```bash
+cd /backend/tests 
+npm run test
+```
 
-- [Expo](https://expo.dev/)
+Lancer le frontend : 
+```bash
+cd /frontend/my-app 
+npm install
+npm run dev
+```
 
+Lancer le frontend : 
+```bash
+cd /frontend/my-app 
+npm install
+npm run dev
+```
 
-## Authors
+Lancer les tests frontend : 
+```bash
+cd /frontend/my-app 
+npx vitest
+```
 
-- [@armanceau](https://www.github.com/armanceau)
-- [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arthur-manceau/)
+Lancer les tests frontend cypress : 
+```bash
+cd /frontend/my-app 
+npm cypress open
+```
 
+## Author
 
+[@armanceau](https://www.github.com/armanceau)
 
-Lancer backend : cd /backend/src node app.mjs
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arthur-manceau/)
 
-Lancer test backend : cd /backend/tests npm run test
-
-Lancer frontend : cd /frontend/my-app npm run dev
-
-Lancer test frontend : cd /frontend/my-app npx vitest
-
-Lancer test frontend cypress : cd /frontend/my-app npm cypress open
